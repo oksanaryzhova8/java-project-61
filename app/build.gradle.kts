@@ -10,6 +10,10 @@ repositories {
     mavenCentral()
 }
 
+application {
+    mainClass = "hexlet.code.App"
+}
+
 dependencies {
     testImplementation(platform("org.junit:junit-bom:6.0.0"))
     testImplementation("org.junit.jupiter:junit-jupiter")
