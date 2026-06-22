@@ -12,3 +12,8 @@
 ![Even game victory](images/even-win.png)
 ### Defeat
 ![Even game defeat](images/even-lose.png)
+## Calc game demonstration 
+### Victory
+![Calc game victory](images/Calc-win.png)
+### Defeat
+![Calc game defeat](images/calc-lose.png)
