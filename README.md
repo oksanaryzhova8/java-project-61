@@ -28,3 +28,8 @@
 
 ### Defeat
 ![Progression game defeat] (images/progression-lose.png)
+## Prime game demonstration
+### Victory
+![Prime game victory] (images/prime-win.png)
+### Defeat
+![Prime game defeat] (images/prime-lose.png)
