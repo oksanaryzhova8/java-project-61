@@ -17,3 +17,8 @@
 ![Calc game victory](images/Calc-win.png)
 ### Defeat
 ![Calc game defeat](images/calc-lose.png)
+## GCD game demonstration
+### Victory
+![GCD game victory] (images/gsd-win.png)
+### Defeat
+![GCD game defeat] (images/gsd-lose.png)

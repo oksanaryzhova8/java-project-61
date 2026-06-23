@@ -10,7 +10,7 @@ public class Engine {
                            String[] questions,
                            String[] correctAnswers
     ) {
-        
+
         Cli.greet(scanner);
 
         String name = Cli.name;
