@@ -22,3 +22,9 @@
 ![GCD game victory] (images/gsd-win.png)
 ### Defeat
 ![GCD game defeat] (images/gsd-lose.png)
+## Progression game demonstration
+### Victory
+![Progression game victory] (images/progression-win.png)
+
+### Defeat
+![Progression game defeat] (images/progression-lose.png)
