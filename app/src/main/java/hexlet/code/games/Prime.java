@@ -2,27 +2,26 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 
-import java.util.Scanner;
 import java.util.Random;
 
 public class Prime {
     private static final String RULES =
             "Answer 'yes' if given number is prime. Otherwise answer 'no'.";
 
-    public static void given(Scanner scanner) {
+    public static void given() {
         Random random = new Random();
 
-        String[] questions = new String[Engine.ROUNDS_COUNT];
-        String[] correctAnswers = new String[Engine.ROUNDS_COUNT];
+        String[][] gameData =
+                new String[Engine.ROUNDS_COUNT][Engine.GAME_DATA_SIZE];
 
         for (int round = 0; round < Engine.ROUNDS_COUNT; round++) {
             int number = random.nextInt();
 
-            questions[round] = String.valueOf(number);
-            correctAnswers[round] = isPrime(number) ? "yes" : "no";
+            gameData[round][0] = String.valueOf(number);
+            gameData[round][1] = isPrime(number) ? "yes" : "no";
         }
 
-        Engine.run(scanner, RULES, questions, correctAnswers);
+        Engine.run(RULES, gameData);
 
     }
 

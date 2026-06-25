@@ -3,25 +3,24 @@ package hexlet.code.games;
 import hexlet.code.Engine;
 
 import java.util.Random;
-import java.util.Scanner;
 
 public class Even {
     private static final String RULES = "Answer 'yes' if the number is even, otherwise answer 'no'.";
 
-    public static void parityCheck(Scanner scanner) {
+    public static void parityCheck() {
         Random random = new Random();
 
-        String[] questions = new String[Engine.ROUNDS_COUNT];
-        String[] correctAnswers = new String[Engine.ROUNDS_COUNT];
+        String[][] gameData =
+                new String[Engine.ROUNDS_COUNT][Engine.GAME_DATA_SIZE];
 
         for (int round = 0; round < Engine.ROUNDS_COUNT; round++) {
             int number = random.nextInt();
 
-            questions[round] = String.valueOf(number);
-            correctAnswers[round] = isEven(number) ? "yes" : "no";
+            gameData[round][0] = String.valueOf(number);
+            gameData[round][1] = isEven(number) ? "yes" : "no";
         }
 
-        Engine.run(scanner, RULES, questions, correctAnswers);
+        Engine.run(RULES, gameData);
 
     }
 

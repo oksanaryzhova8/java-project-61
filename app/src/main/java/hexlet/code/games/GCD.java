@@ -2,30 +2,30 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 
-import java.util.Scanner;
 import java.util.Random;
 
 public class GCD {
     private static final String RULES =
             "Find the greatest common divisor of given numbers.";
 
-    public static void find(Scanner scanner) {
+    public static void find() {
         Random random = new Random();
 
-        String[] questions = new String[Engine.ROUNDS_COUNT];
-        String[] correctAnswers = new String[Engine.ROUNDS_COUNT];
+        String[][] gameData =
+                new String[Engine.ROUNDS_COUNT][Engine.GAME_DATA_SIZE];
 
         for (int round = 0; round < Engine.ROUNDS_COUNT; round++) {
             int firstNumber = random.nextInt();
             int secondNumber = random.nextInt();
 
-            questions[round] = firstNumber + " " + secondNumber;
+            gameData[round][0] =
+                    firstNumber + " " + secondNumber;
 
             int result = findGcd(firstNumber, secondNumber);
-            correctAnswers[round] = String.valueOf(result);
+            gameData[round][1] = String.valueOf(result);
         }
 
-        Engine.run(scanner, RULES, questions, correctAnswers);
+        Engine.run(RULES, gameData);
     }
 
     private static int findGcd(int firstNumber, int secondNumber) {

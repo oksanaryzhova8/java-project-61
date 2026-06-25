@@ -21,33 +21,33 @@ public class App {
 
         switch (choice) {
             case 1:
-                Cli.greet(scanner);
+                Cli.greet();
                 break;
 
             case 2:
-                Even.parityCheck(scanner);
+                Even.parityCheck();
                 break;
 
             case 3:
-                Calc.calculate(scanner);
+                Calc.calculate();
                 break;
 
             case 4:
-                GCD.find(scanner);
+                GCD.find();
                 break;
 
             case 5:
-                Progression.missing(scanner);
+                Progression.missing();
                 break;
 
             case 6:
-                Prime.given(scanner);
+                Prime.given();
                 break;
 
             case 0:
                 break;
             default:
-                System.out.println("Unknown game number.");
+                System.out.println("Unknown game number: '" + choice + "'.");
         }
     }
 }

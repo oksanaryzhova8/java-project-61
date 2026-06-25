@@ -2,7 +2,6 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 
-import java.util.Scanner;
 import java.util.Random;
 
 public class Calc {
@@ -12,45 +11,63 @@ public class Calc {
     private static final int OPERATIONS_COUNT = 3;
     private static final int NUMBER_BOUND = 100;
 
-    public static void calculate(Scanner scanner) {
+    public static void calculate() {
         Random random = new Random();
 
-        String[] questions = new String[Engine.ROUNDS_COUNT];
-        String[] correctAnswers = new String[Engine.ROUNDS_COUNT];
+        String[][] gameData =
+                new String[Engine.ROUNDS_COUNT][Engine.GAME_DATA_SIZE];
 
         for (int round = 0; round < Engine.ROUNDS_COUNT; round++) {
             int firstNumber = random.nextInt(NUMBER_BOUND);
             int secondNumber = random.nextInt(NUMBER_BOUND);
             int operationNumber = random.nextInt(OPERATIONS_COUNT);
 
-            String operator;
-            int result;
+            String operator = getOperator(operationNumber);
+            int result = calculateExpression(
+                    firstNumber,
+                    secondNumber,
+                    operator
+            );
 
-            switch (operationNumber) {
-                case 0:
-                    operator = "+";
-                    result = firstNumber + secondNumber;
-                    break;
-                case 1:
-                    operator = "-";
-                    result = firstNumber - secondNumber;
-                    break;
-                case 2:
-                    operator = "*";
-                    result = firstNumber * secondNumber;
-                    break;
-                default:
-                    throw new IllegalStateException(
-                            "Unknown operation: " + operationNumber
-                    );
-            }
-
-            questions[round] =
+            gameData[round][0] =
                     firstNumber + " " + operator + " " + secondNumber;
-
-            correctAnswers[round] = String.valueOf(result);
+            gameData[round][1] = String.valueOf(result);
         }
 
-        Engine.run(scanner, RULES, questions, correctAnswers);
+        Engine.run(RULES, gameData);
+    }
+
+    private static String getOperator(int operationNumber) {
+        switch (operationNumber) {
+            case 0:
+                return "+";
+            case 1:
+                return "-";
+            case 2:
+                return "*";
+            default:
+                throw new IllegalArgumentException(
+                        "Unknown operation number: " + operationNumber
+                );
+        }
+    }
+
+    private static int calculateExpression(
+            int firstNumber,
+            int secondNumber,
+            String operator
+    ) {
+        switch (operator) {
+            case "+":
+                return firstNumber + secondNumber;
+            case "-":
+                return firstNumber - secondNumber;
+            case "*":
+                return firstNumber * secondNumber;
+            default:
+                throw new IllegalArgumentException(
+                        "Unknown operator: " + operator
+                );
+        }
     }
 }

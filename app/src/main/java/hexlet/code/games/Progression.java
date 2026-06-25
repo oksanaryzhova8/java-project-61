@@ -2,7 +2,6 @@ package hexlet.code.games;
 
 import hexlet.code.Engine;
 
-import java.util.Scanner;
 import java.util.Random;
 
 public class Progression {
@@ -13,54 +12,38 @@ public class Progression {
     private static final int START_BOUND = 9;
     private static final int STEP_BOUND = 10;
 
-    public static void missing(Scanner scanner) {
+    public static void missing() {
         Random random = new Random();
 
-        String[] questions = new String[Engine.ROUNDS_COUNT];
-        String[] correctAnswers = new String[Engine.ROUNDS_COUNT];
+        String[][] gameData =
+                new String[Engine.ROUNDS_COUNT][Engine.GAME_DATA_SIZE];
 
         for (int round = 0; round < Engine.ROUNDS_COUNT; round++) {
             int start = random.nextInt(START_BOUND);
             int step = random.nextInt(STEP_BOUND);
 
-            int[] progression = createProgression(start, step);
+            String[] progression = createProgression(start, step);
 
-            int hiddenIndex = random.nextInt(PROGRESSION_LENGTH);
+            int hiddenIndex = random.nextInt(progression.length);
 
-            questions[round] = createQuestion(progression, hiddenIndex);
+            String correctAnswer = progression[hiddenIndex];
+            progression[hiddenIndex] = "..";
 
-            correctAnswers[round] = String.valueOf(progression[hiddenIndex]);
+            gameData[round][0] = String.join(" ", progression);
+            gameData[round][1] = correctAnswer;
         }
 
-        Engine.run(scanner, RULES, questions, correctAnswers);
+        Engine.run(RULES, gameData);
 
     }
 
-    private static int[] createProgression(int start, int step) {
-        int[] progression = new int[PROGRESSION_LENGTH];
+    private static String[] createProgression(int start, int step) {
+        String[] progression = new String[PROGRESSION_LENGTH];
 
-        for (int index = 0; index < PROGRESSION_LENGTH; index++) {
-            progression[index] = start + index * step;
+        for (int index = 0; index < progression.length; index++) {
+            progression[index] =  String.valueOf(start + index * step);
         }
 
         return progression;
-    }
-
-    private static String createQuestion(int[] progression, int hiddenIndex) {
-        StringBuilder question = new StringBuilder();
-
-        for (int index = 0; index < progression.length; index++) {
-            if (index == hiddenIndex) {
-                question.append("..");
-            } else {
-                question.append(progression[index]);
-            }
-
-            if (index < progression.length - 1) {
-                question.append(" ");
-            }
-        }
-
-        return question.toString();
     }
 }
