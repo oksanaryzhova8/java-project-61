@@ -8,7 +8,7 @@ public class Calc {
     private static final String RULES =
             "What is the result of the expression?";
 
-    private static final int OPERATIONS_COUNT = 3;
+    private static final char[] OPERATORS = {'+', '-', '*'};
     private static final int NUMBER_BOUND = 100;
 
     public static void calculate() {
@@ -20,9 +20,10 @@ public class Calc {
         for (int round = 0; round < Engine.ROUNDS_COUNT; round++) {
             int firstNumber = random.nextInt(NUMBER_BOUND);
             int secondNumber = random.nextInt(NUMBER_BOUND);
-            int operationNumber = random.nextInt(OPERATIONS_COUNT);
 
-            String operator = getOperator(operationNumber);
+            int operatorIndex = random.nextInt(OPERATORS.length);
+            char operator = OPERATORS[operatorIndex];
+
             int result = calculateExpression(
                     firstNumber,
                     secondNumber,
@@ -37,32 +38,17 @@ public class Calc {
         Engine.run(RULES, gameData);
     }
 
-    private static String getOperator(int operationNumber) {
-        switch (operationNumber) {
-            case 0:
-                return "+";
-            case 1:
-                return "-";
-            case 2:
-                return "*";
-            default:
-                throw new IllegalArgumentException(
-                        "Unknown operation number: " + operationNumber
-                );
-        }
-    }
-
     private static int calculateExpression(
             int firstNumber,
             int secondNumber,
-            String operator
+            char operator
     ) {
         switch (operator) {
-            case "+":
+            case '+':
                 return firstNumber + secondNumber;
-            case "-":
+            case '-':
                 return firstNumber - secondNumber;
-            case "*":
+            case '*':
                 return firstNumber * secondNumber;
             default:
                 throw new IllegalArgumentException(
